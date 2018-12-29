@@ -18,7 +18,7 @@ def isLeave(filename):
 		for line in f:
 			line = line.lower()
 			line = re.sub(r'\|\~|\`|\!|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?', " ", line)
-			if re.search('#voteleave|#leave|#takecontrol', line):
+			if re.search('#voteleave|#leave|#takecontrol|#leaveeu', line):
 				leaveTweets.write(line)
 				leaveCnt = leaveCnt + 1
 			if re.search('#voteremain|#remain|#strongerin|#labourinforbritain|#intogether', line):
