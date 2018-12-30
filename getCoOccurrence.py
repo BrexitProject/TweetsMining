@@ -2,7 +2,7 @@ import re, collections
 import os
 
 def getCoOccurrence(filename):
-	CoOccurenceFile = open("./co_coccurrence/testResult", 'a')
+	CoOccurenceFile = open("./co_coccurrence/coResult", 'a')
 	path = './tweets_by_month/' + filename
 	with open(path) as f:
 		wordsBox = []
@@ -13,14 +13,14 @@ def getCoOccurrence(filename):
 			line = re.sub(r'\|\~|\`|\!|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?', " ", line)
 			wordsBoxByLine = line.strip().split()
 			cnt = 0
+			temp = ""
 			for word in wordsBoxByLine:
 				# match hashtag
-				flag = 0
 				if re.match(r'(#)([a-zA-Z0-9])', word) and word != '#brexit':
-					CoOccurenceFile.write(word)
-					CoOccurenceFile.write('; ')
-					flag = 1
-			if (flag):
+					temp = temp + word + "; "
+					cnt = cnt + 1
+			if (cnt > 1):
+				CoOccurenceFile.write(temp)
 				#CoOccurenceFile.write('&')
 				CoOccurenceFile.write('\n')
 
